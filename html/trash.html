@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qute generator</title>
+    <link rel="stylesheet" href="../css/styles2.css">
+</head>
+<body >
+<div class="page0">
+
+    <ul class="circles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+</ul>
+
+<div id="blooc" class="bloc">
+
+
+</div>
+</div>
+
+
+
+
+<script>
+// nreperer delted quote
+const deletedQuotes = JSON.parse(localStorage.getItem("deletedQuotes")) || [];
+
+  const deletedQuotesContainer = document.getElementById("blooc");
+
+
+//  ida kayn deltedquotes
+if (deletedQuotes.length > 0) {
+  deletedQuotes.forEach((quote) => {
+    let div = document.createElement("div");
+    let divText = document.createElement("div");
+    let divButton = document.createElement("div");
+    let meftah = document.createElement("button");
+    let meftahText = document.createTextNode("Restore");
+
+    div.classList.add("divStyle");
+    divText.classList.add("divTextStyle");
+    divButton.classList.add("divButtonStyle");
+
+    divText.textContent = quote;
+    meftah.appendChild(meftahText);
+    divButton.appendChild(meftah);
+    div.appendChild(divText);
+    div.appendChild(divButton);
+
+    deletedQuotesContainer.appendChild(div);
+
+    meftah.addEventListener("click", () => {
+      // Restore the quote
+      restoreQuote(quote);
+
+      // Nahiha m trash
+      div.remove();
+    });
+  });
+}
+else
+{
+  alert("You didnt have delete any quotes")
+}
+
+
+function restoreQuote(quote) {
+
+  const likedQuotes = JSON.parse(localStorage.getItem("likedQuotes")) || [];
+
+  // nahi quot m deleted
+  const deletedQuotes = JSON.parse(localStorage.getItem("deletedQuotes")) || [];
+
+  // hna bach n3rfo index ta3 lquot
+  const index = deletedQuotes.indexOf(quote);
+
+  // hna ida l9inaha dakh l array  ta3 delted na7iwha
+  if (deletedQuotes[index]) {
+    deletedQuotes.splice(index, 1);
+    localStorage.setItem("deletedQuotes", JSON.stringify(deletedQuotes));
+  }
+
+  // nrg3ha ll likesquotes
+  likedQuotes.push(quote);
+  // n updatiha
+  localStorage.setItem("likedQuotes", JSON.stringify(likedQuotes));
+
+ 
+}
+
+
+
+ 
+
+
+
+
+
+
+
+
+</script>
+
+
+    
+</body>
+</html>

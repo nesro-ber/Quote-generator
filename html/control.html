@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote generator</title>
+    <link rel="stylesheet" href="../css/styles2.css">
+</head>
+<body>
+
+
+    <div class="dar">
+
+        <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+    </ul>
+    
+        <a href="../html/home.html" target="_blank" rel="noopener noreferrer"><button class="bt1">Return</button></a>
+        <h1>Control Panel</h1>
+    
+  
+        <div id="table">
+    
+       
+        
+    
+    
+        </div>
+   
+    
+        </div>
+      
+    </div>
+   
+
+<script>
+
+
+ let btn = document.getElementById("btn");
+//   nrecuper les quote li ktbhom user
+let newquotes = JSON.parse(localStorage.getItem("newquotes"));
+// array li handir fiha les quote li ytafichaw
+let approvedQuotes = []
+
+if (newquotes && newquotes.length > 0) {
+    // ndiro foreach psq n9dr ndir ktr mn quote wahda
+    newquotes.forEach(quoteText => {
+        let div = document.createElement("div");
+        let divRight = document.createElement("div");
+        let divLeft = document.createElement("div");
+        let text = document.createElement("p");
+        let button = document.createElement("button");
+        let buttonText = document.createTextNode("Approve");
+
+        divLeft.appendChild(text)
+        divRight.appendChild(button)
+        
+        button.appendChild(buttonText);
+        div.appendChild(divLeft);
+        div.appendChild(divRight);
+
+        div.classList.add("divOfControl0")
+        divLeft.classList.add("divOfControl1")
+        divRight.classList.add("divOfControl2")
+         
+        text.innerText = quoteText;
+
+        document.getElementById("table").appendChild(div);
+
+        button.addEventListener("click", () => {
+            let approvedQuote = text.innerText;
+            // nzidoha fl array li rah taficha apres
+            approvedQuotes.unshift(approvedQuote);
+            localStorage.setItem("approvedquotes", JSON.stringify(approvedQuotes));
+            console.log(approvedQuotes);
+            div.remove();
+
+            
+        })
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+    
+</body>
+</html>

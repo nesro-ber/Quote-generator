@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/styles2.css">
+</head>
+<body>
+    
+<!-- Your existing HTML code -->
+
+<div class="dar">
+
+    <ul class="circles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+</ul>
+
+    <a href="../html/quote.html" target="_blank" rel="noopener noreferrer"><button class="bt1">Return</button></a>
+    <h1>Quote Library</h1>
+
+
+    <div id="container">
+
+   
+    
+
+
+    </div>
+
+    <div class="tahta">
+<button class="bt1" id="meftahtwo">Clear All</button>
+<button id="btnTrash" class="bt1">Trash</button>
+
+    </div>
+
+    </div>
+  
+</div>
+
+
+
+
+
+
+
+
+
+<!-- <script src="../js/script.js"></script> -->
+ 
+<script>
+
+  // nrecuper liked quote 
+const likedQuotes = JSON.parse(localStorage.getItem("likedQuotes")) || [];
+const btnTrash=document.getElementById("btnTrash")
+
+let box = document.getElementById("container");
+
+
+function removeQuote(plasa) {
+  let quoteToRemove = plasa.querySelector("p").textContent;
+
+  // nstokiha f delted quotes
+  const deletedQuotes = JSON.parse(localStorage.getItem("deletedQuotes")) || [];
+  deletedQuotes.push(quoteToRemove);
+  localStorage.setItem("deletedQuotes", JSON.stringify(deletedQuotes));
+
+  // hadi bach nahi l quote li fasitha m liked quote
+  likedQuotes.splice(likedQuotes.indexOf(quoteToRemove), 1);
+
+  // n updati likedquotes psq na7itlha l quote hadi
+  localStorage.setItem("likedQuotes", JSON.stringify(likedQuotes));
+
+
+  plasa.remove();
+}
+
+
+if (likedQuotes && likedQuotes.length > 0) {
+  likedQuotes.forEach((quote) => {
+    let plasa = document.createElement("div");
+    let plasaText = document.createElement("div");
+    let plasaButton = document.createElement("div");
+    let para = document.createElement("p");
+    let btn = document.createElement("button");
+    let btnText = document.createTextNode("X");
+    let btnTwo = document.getElementById("meftahtwo");
+
+    plasa.classList.add("plasaStyle");
+    plasaButton.classList.add("plasaButtonStyle");
+    plasaText.classList.add("plasaTextStyle");
+    btn.classList.add("meftahStyle")
+
+    btn.addEventListener("click", () => {
+      removeQuote(plasa);
+    });
+
+    btnTwo.addEventListener("click", () => {
+      removeQuote(plasa);
+    });
+
+    para.textContent = quote;
+    plasaText.appendChild(para);
+    btn.appendChild(btnText);
+    plasaButton.appendChild(btn);
+    plasa.appendChild(plasaText);
+    plasa.appendChild(plasaButton);
+    box.appendChild(plasa);
+  });
+}
+
+
+btnTrash.addEventListener("click", ()=>{
+    window.location="./trash.html";
+})
+
+ 
+    </script>
+    
+
+
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote</title>
+    <link rel="stylesheet" href="../css/styles2.css">
+    
+</head>
+<body>
+
+
+  
+     <div class="home">
+      <ul class="circles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+</ul>
+        <header>
+<button onclick="doSign()" class="bt1">Sign up</button>
+        <button onclick="doLogin()" class="bt1">Login</button>
+
+        </header>
+
+
+
+        <div id="login-container" class="login-container hide">
+          <div class="login-header">
+            <div class="btnClose-div"><button class="btnClose" >X</button></div>
+            <div><p class="login-text">Login</p></div>
+          </div>
+          
+          <input  type="text" class="login-input" placeholder="Username" id="username">
+          <input type="password" class="login-input" placeholder="Password " id="password" >
+         
+         <button  class="login-button " id="loginButton"><p class="login-text">Login</p></button>
+        
+        </div>
+     
+        <div class="up">
+          <div>
+           <h1>Quote generator</h1>
+          <h5>-     Discover wisdom, one click at a time. Our Quote Generator awaits -</h5>
+          <a href="../html/quote.html">
+            <button class="bt-start">
+            <span>START</span>
+          </button>
+        </a>
+        </div>
+      
+       
+      
+
+        
+    </div>
+  <div class="down">
+
+ 
+
+        </div>
+
+
+
+
+
+
+
+     </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+     <!-- <script src="../js/script.js"></script> -->
+
+     <script>
+
+const btnClose=document.querySelector(".btnClose")
+const enterButton=document.querySelector(".login-button")
+const loginContainer = document.getElementById("login-container");
+
+function doSign()
+{
+  if (loginContainer.classList.contains("hide"))
+  {
+    let loginText=document.querySelectorAll(".login-text")
+    loginContainer.style.display="block"
+    
+    loginText.forEach((element) =>{
+      element.textContent="Sign in"
+    })
+  
+  }
+ 
+}
+
+function doLogin()
+{
+  if (loginContainer.classList.contains("hide"))
+  {
+    let loginText=document.querySelectorAll(".login-text")
+    loginContainer.style.display="block"
+   
+    loginText.forEach((text) =>{
+      text.textContent="Login"
+    })
+  }
+ 
+}
+
+btnClose.addEventListener("click", ()=>{
+   loginContainer.style.display="none"
+  
+})
+
+
+
+
+
+enterButton.addEventListener("click", ()=>{
+
+
+   const usernameInput = document.getElementById("username");
+  const passwordInput = document.getElementById("password");
+  const usernameValue = usernameInput.value.trim();
+  const passwordValue = passwordInput.value.trim();
+
+  console.log(usernameValue);
+  console.log(passwordValue);
+  if (usernameValue=="admin" & passwordValue=="admin" )
+  {
+    window.location="./control.html";
+  }
+  else if(usernameValue=="" & passwordValue==""){
+    alert('Please add a username and password');
+  
+  }
+  else if (usernameValue=="admin" & passwordValue=="")
+  {
+    alert('Please add a password');
+
+  }
+  else
+{
+  alert("invalid username or password")
+}
+}) 
+  
+ 
+
+
+     </script>
+
+
+
+
+</body>
+</html>
